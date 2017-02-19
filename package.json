@@ -1,0 +1,21 @@
+{
+  "name": "purrify-api",
+  "version": "0.1.0",
+  "description": "A simple RESTful app for all things cat.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon"
+  },
+  "author": "Matthew Bliffert",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "express": "^4.14.1",
+    "mongoose": "^4.8.1",
+    "mongoose-simple-random": "^0.4.1"
+  },
+  "devDependencies": {
+    "eslint": "^3.15.0"
+  }
+}
