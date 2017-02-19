@@ -8,10 +8,24 @@ var UserSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true,
+        required: true
+    },
+    email: {
+        type: String,
+        unique: true,
+        required: true
     }
 });
 
 var User = mongoose.model('User', UserSchema);
 
 module.exports = User;
+
+// Notes
+
+// admin permissions?
+// -
+// -
+// -
+
+// check for unique user name?
