@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var bcrypt = require('bcryptjs');
 
 var UserSchema = new mongoose.Schema({
     username: {
@@ -8,7 +9,8 @@ var UserSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        select: false
     },
     email: {
         type: String,
@@ -16,6 +18,17 @@ var UserSchema = new mongoose.Schema({
         required: true
     }
 });
+
+UserSchema.methods.validatePassword = function (password, callback) {
+    bcrypt.compare(password, this.password, function(err, isValid) {
+        if (err) {
+            callback(err);
+
+            return;
+        }
+        callback(null, isValid);
+    })
+}
 
 var User = mongoose.model('User', UserSchema);
 
@@ -29,3 +42,11 @@ module.exports = User;
 // -
 
 // check for unique user name?
+
+// routes available on api doc web app
+// -
+// -
+
+// routes available on admin web app
+// -
+// -

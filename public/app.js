@@ -15,11 +15,11 @@ var addCatFact = function () {
 
         var data = {}
 
-        data.source = $(this).find('#source').val();
-        data.fact = $(this).find('#fact').val();
+        data.source = $(this).find('#cat-source').val();
+        data.fact = $(this).find('#cat-fact').val();
 
-        $(this).find('#source').val(null);
-        $(this).find('#fact').val(null);
+        $(this).find('#cat-source').val(null);
+        $(this).find('#cat-fact').val(null);
 
         axios.post('/facts', data).then(function (res) {
             displayCatFact(res.data);

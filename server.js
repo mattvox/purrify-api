@@ -1,6 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+var bcrypt = require("bcryptjs");
 
 var config = require("./config");
 var User = require("./models/user");
@@ -52,7 +53,7 @@ server.get('/api', function (req, res) {
 server.get('/users', function (req, res) {
     User.find({}, function (err, users) {
         if (err) {
-          return res.status(404).json({message: 'User Not Found'});
+            return res.status(404).json({message: 'User Not Found'});
         }
         res.json(users);
     });
@@ -72,15 +73,85 @@ server.get('/users/:username', function (req, res) {
 
 // POST create a new user
 server.post('/users', function (req, res) {
-    User.create({
-        username: req.body.username,
-        password: req.body.password
-    }, function (err, user) {
-        console.log(err);
+    // user validation
+    if (!req.body) {
+        return res.status(400).json({message: "No request body."});
+    }
+
+    // USERNAME
+
+    if (!('username' in req.body)) {
+        return res.status(422).json({message: "Missing field: username"});
+    }
+
+    var username = req.body.username.trim();
+
+    if (typeof username !== 'string') {
+        return res.status(422).json({message: "Incorrect field type: username"});
+    }
+
+    if (username === '') {
+        return res.status(422).json({message: "Incorrect field length: username"});
+    }
+
+    // PASSWORD
+
+    if (!('password' in req.body)) {
+        return res.status(422).json({message: "Missing field: password"});
+    }
+
+    var password = req.body.password.trim();
+
+    if (typeof password !== 'string') {
+        return res.status(422).json({message: "Incorrect field type: password"});
+    }
+
+    if (password === '') {
+        return res.status(422).json({message: "Incorrect field length: password"});
+    }
+
+    // EMAIL
+
+    if (!('email' in req.body)) {
+        return res.status(422).json({message: "Missing field: email"});
+    }
+
+    var email = req.body.email.trim();
+
+    /*eslint-disable*/
+
+    var regExTest = (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).test(email);
+
+    /*eslint-disable*/
+
+    if (!regExTest) {
+        return res.status(422).json({message: "Incorrect field format: email"});
+    }
+
+
+    // salt
+    bcrypt.genSalt(10, function (err, salt) {
         if (err) {
             return res.status(500).json({message: 'Internal Server Error'});
         }
-        res.status(201).json(user);
+
+        bcrypt.hash(password, salt, function (err, hash) {
+            if (err) {
+                return res.status(500).json({message: 'Internal Server Error'});
+            }
+
+            User.create({
+                username: username,
+                password: hash,
+                email: email
+            }, function (err) {
+                console.log(err);
+                if (err) {
+                    return res.status(500).json({message: 'Internal Server Error'});
+                }
+                res.status(201).json({message: 'User successfully created'});
+            });
+        });
     });
 });
 
@@ -101,7 +172,9 @@ server.put('/users/:username', function (req, res) {
 
     User.findOneAndUpdate({
         username: req.params.username
-    }, data, { new: true }, function (err, user) {
+    }, data, {
+        new: true
+    }, function (err, user) {
         if (err) {
             return res.status(500).json({message: 'Internal Server Error'});
         }
@@ -158,7 +231,7 @@ server.get('/facts/:id', function (req, res) {
 
 // POST create a new fact
 server.post('/facts', function (req, res) {
-  console.log(req.body);
+    console.log(req.body);
     Fact.create({
         fact: req.body.fact,
         source: req.body.source
@@ -187,7 +260,9 @@ server.put('/facts/:id', function (req, res) {
 
     Fact.findOneAndUpdate({
         _id: req.params.id
-    }, data, { new: true }, function (err, fact) {
+    }, data, {
+        new: true
+    }, function (err, fact) {
         if (err) {
             return res.status(500).json({message: 'Internal Server Error'});
         }
