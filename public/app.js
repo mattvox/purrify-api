@@ -38,7 +38,7 @@ var getRandomCatFact = function () {
 }
 
 var getAllCatFacts = function () {
-  axios.get('/facts').then(function (res) {
+  axios.get('/facts?token=' + localStorage.getItem('token')).then(function (res) {
       res.data.forEach(function (fact) {
           displayCatFact(fact);
       })

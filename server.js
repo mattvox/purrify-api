@@ -2,8 +2,11 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var bcrypt = require("bcryptjs");
+var jwt = require('jsonwebtoken');
 
 var config = require("./config");
+var jwtConfig = require("./jwt-config");
+
 var User = require("./models/user");
 var Fact = require("./models/fact");
 
@@ -23,6 +26,7 @@ var runServer = function (callback) {
             console.log('Listening on localhost:' + config.PORT);
             if (callback) {
                 callback();
+
             }
         });
     });
@@ -36,16 +40,63 @@ if (require.main === module) {
     });
 }
 
-// middleware for all routes will go here... i think???
-server.use(function (req, res, next) {
-    console.log('route requested, something is about to happen');
-    next();
-})
+// ********** MIDDLEWARE **********
+
+var securePaths = ['/admin', '/admin/']
+
+// server.use(function (req, res, next) {
+//
+//   // auth.initialize();
+//
+//
+//   console.log('Method: ', req.method);
+//   console.log('Request path: ', req.path);
+//
+//     if (_.includes(securePaths, req.path)) {
+//
+//
+//
+//         console.log('admin route requested, something is about to happen');
+//     } else {
+//         console.log('route requested, something is about to happen');
+//     }
+//
+//     next();
+// })
 
 // TEST route
 server.get('/api', function (req, res) {
     res.json({message: "It worked, it worked!!!"});
 });
+
+// ********** LOGIN ROUTES **********
+
+server.post('/login', function (req, res) {
+    User.findOne({email: req.body.email}).select('email password').exec(function (err, user) {
+        if (err) {
+            return res.status(404).json({message: "User Not Found"});
+        }
+        console.log(user);
+        user.validatePassword(req.body.password, function (err, isValid) {
+            console.log(err, isValid);
+            if (err) {
+                return res.status(418).json({message: 'Im a teapot'});
+            }
+
+            if (!isValid) {
+                return res.json({message: 'Invalid password'});
+            }
+
+            // this is where we generate a token
+            var token = jwt.sign({
+                email: user.email
+            }, jwtConfig.jwtSecret, {expiresIn: '8h'});
+            res.json({token: token});
+        })
+
+    });
+
+})
 
 // ********** ALL USER ROUTES **********
 
@@ -59,8 +110,31 @@ server.get('/users', function (req, res) {
     });
 });
 
+// ********** NEW MIDDLEWARE **********
+
+server.use(function(req, res, next){
+
+  var token = req.query.token || req.body.token || req.params['token'] || req.headers['x-access-token'];
+  console.log(token);
+
+  jwt.verify(token, jwtConfig.jwtSecret, function (err, decoded) {
+      console.log(decoded);
+      if (err){
+        return res.status(403).json({
+          message: 'failed to authenticate'
+        })
+      }
+      // the usual error checking
+      req.decoded = decoded
+      next();
+  })
+
+})
+
+
 // GET a specific user
 server.get('/users/:username', function (req, res) {
+    console.log(req.decoded);
     User.findOne({
         username: req.params.username
     }, function (err, user) {
@@ -128,7 +202,6 @@ server.post('/users', function (req, res) {
         return res.status(422).json({message: "Incorrect field format: email"});
     }
 
-
     // salt
     bcrypt.genSalt(10, function (err, salt) {
         if (err) {
@@ -145,7 +218,7 @@ server.post('/users', function (req, res) {
                 password: hash,
                 email: email
             }, function (err) {
-                console.log(err);
+                console.log('Error: ', err);
                 if (err) {
                     return res.status(500).json({message: 'Internal Server Error'});
                 }
