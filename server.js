@@ -93,36 +93,3 @@ server.post('/login', function (req, res) {
 server.use('*', function (req, res) {
   res.status(404).json({message: '404: Not Found'});
 })
-
-// ********** MIDDLEWARE **********
-
-// server.use(function(req, res, next){
-//
-//   console.log(req.headers);
-//
-//   var token = req.query.token || req.body.token || req.params.token || req.headers['x-access-token'] || req.headers.authorization;
-//
-//   var splitToken = token.split(' ');
-//
-//   if (splitToken.length === 2) {
-//       var bearer = splitToken[0];
-//       var jwtToken = splitToken[1];
-//       if (/^Bearer$/i.test(bearer)) {
-//         token = jwtToken;
-//       }
-//   }
-//
-//   console.log('token', token);
-//
-//   jwt.verify(token, jwtConfig.jwtSecret, function (err, decoded) {
-//       console.log(decoded);
-//       if (err){
-//         return res.status(403).json({
-//           message: 'failed to authenticate'
-//         })
-//       }
-//       // the usual error checking
-//       req.decoded = decoded
-//       next();
-//   })
-// })
