@@ -31,7 +31,7 @@ var addCatFact = function () {
         $(this).find('#cat-source').val(null);
         $(this).find('#cat-fact').val(null);
 
-        axios.post('/facts', data).then(function (res) {
+        axios.post('/api/facts', data).then(function (res) {
             displayCatFact(res.data);
         }).catch(function (err) {
             console.log(err);
@@ -56,7 +56,7 @@ var getRandomCatFact = function () {
 }
 
 var getAllCatFacts = function () {
-    axios.get('/api/facts?token=' + localStorage.getItem('token')).then(function (res) {
+    axios.get('/api/facts/all').then(function (res) {
         res.data.forEach(function (fact) {
             displayCatFact(fact);
         })
@@ -64,6 +64,16 @@ var getAllCatFacts = function () {
         console.log(err);
     })
 }
+
+// var getAllCatFacts = function () {
+//     axios.get('/api/facts?token=' + localStorage.getItem('token')).then(function (res) {
+//         res.data.forEach(function (fact) {
+//             displayCatFact(fact);
+//         })
+//     }).catch(function (err) {
+//         console.log(err);
+//     })
+// }
 
 // login
 

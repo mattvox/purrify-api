@@ -16,159 +16,204 @@
 
 <body>
 
-    <!-- BEGIN Header -->
-    <header>
-        <nav class="navbar navbar-fixed-top custom-navbar">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                      <span class="sr-only">Toggle navigation</span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand custom-logo-text" href="#">Purrify</a>
-                </div>
-                <div id="navbar" class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right custom-navbar-text">
-                        <li class="active"><a href="#">Docs</a></li>
-                        <li><a href="#github">GitHub</a></li>
-                        <li><a href="#support">Support</a></li>
-                    </ul>
-                </div>
-                <!--/.nav-collapse -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <nav id="spy">
+                <ul class="sidebar-nav nav">
+                    <li class="sidebar-brand active">
+                        <a href="#home"><span id="logo-text">Purrify</span></a>
+                    </li>
+                    <li>
+                        <a href="#anch1" data-scroll>
+                            <span class="fa fa-anchor solo">DOCS</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#anch2" data-scroll>
+                            <span class="fa fa-anchor solo">CONTRIBUTE</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#anch3" data-scroll>
+                            <span class="fa fa-anchor solo">CONTACT</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#anch4" data-scroll>
+                            <span class="fa fa-anchor solo">GITHUB</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Page content -->
+        <div id="page-content-wrapper container">
+            <div class="content-header">
+                <h1 id="home">
+                    <a id="menu-toggle" href="#" class="glyphicon glyphicon-menu-hamburger" aria-hidden="true">
+                    </a>
+                </h1>
             </div>
-        </nav>
-    </header>
+
+            <div class="page-content inset" data-spy="scroll" data-target="#spy">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1 jumbotron">
+                        <div>
+                            <h1>All your cats are belong to me...</h1>
+                            <p>Purrify is a simple, easy-to-use RESTful service dedicated to delivering everything cat.</p>
+                            <!-- <p><a class="btn btn-default">Click On Me!</a>
+                          <a class="btn btn-info">Tweet Me!</a></p> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" id="anch1">
+                    <div class="col-md-10 col-md-offset-1">
+                        <legend><h3>Getting Started</h3></legend>
+                        <p>Using Purrify couldn't be any easier. Here are some examples.</p>
+                        <p>
+                            Cats go for world domination. Meow for food, then when human fills food dish, take a few bites of food and continue meowing always hungry, sun bathe. Then cats take over the world bathe private parts with tongue then lick owner's face vommit food and
+                            eat it again and shove bum in owner's face like camera lens asdflkjaertvlkjasntvkjn (sits on keyboard) toy mouse squeak roll over.
+                        </p></br>
+                        <h4>HTTP GET Requests</h4>
+                        <pre>GET https://example.com/api/facts</pre>
+                        <p>
+                          Delivers to you a random cat fact from our database in standard JSON format.
+                        </p>
+                        <p>---examples will go here---</p>
+                        <pre>GET https://example.com/api/facts/all</pre>
+                        <p>
+                          Delivers to you all cat facts from our database in standard JSON format.
+                        </p></br>
+                        <h4>HTTP POST Requests</h4>
+                        <pre>POST https://example.com/api/facts</pre>
+                        <p>Purrify allows anyone to add cat facts to our database. Please note that our cat admins are very serious about the accuracy of newly submitted cat facts and each newly added fact will go through an extensive review process before becoming available through the API.</p>
+                        <table class="table">
+                          <caption>QUERY PARAMETERS</caption>
+                          <tr>
+                            <th>Parameter</th>
+                            <th>Optional</th>
+                            <th>Description</th>
+                          </tr>
+                          <tr>
+                            <td>Source</td>
+                            <td>No</td>
+                            <td>The source parameter identifies the originating source of the cat fact.</td>
+                          </tr>
+                          <tr>
+                            <td>Fact</td>
+                            <td>No</td>
+                            <td>The fact parameter contains the cat fact to be submitted for approval.</td>
+                          </tr>
+                        </table>
+                    </div>
+                  </div>
+
+                  <div class="row" id="anch2">
+                    <div class="col-md-10 col-md-offset-1">
+                        <legend><h3>Contribute</h3></legend>
+                        <p>Contributing a new cat fact to our database couldn't be any easier. Just use the form below and please note that all fields are required.</p>
+                        <form class="form-horizontal custom-form" id="js-fact-submit">
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" id="cat-source" placeholder="Source">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-8">
+                                    <textarea class="form-control col-md-4" rows="3" id="cat-fact" placeholder="Cat Fact"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-8">
+                                    <button type="submit" class="btn btn-default">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                  </div>
+
+                  <div class="row" id="anch3">
+                    <div class="col-md-10 col-md-offset-1">
+                        <legend><h3>Contact</h3></legend>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultricies, metus eget fringilla fermentum.</p>
+                        <p>
+                            Cats go for world domination. Meow for food, then when human fills food dish, take a few bites of food and continue meowing always hungry, sun bathe. Then cats take over the world bathe private parts with tongue then lick owner's face vommit food and
+                            eat it again and shove bum in owner's face like camera lens asdflkjaertvlkjasntvkjn (sits on keyboard) toy mouse squeak roll over.
+                        </p></br>
+                        <p>
+                            Cats go for world domination. Meow for food, then when human fills food dish, take a few bites of food and continue meowing always hungry, sun bathe. Then cats take over the world bathe private parts with tongue then lick owner's face vommit food and
+                            eat it again and shove bum in owner's face like camera lens asdflkjaertvlkjasntvkjn (sits on keyboard) toy mouse squeak roll over.
+                        </p></br>
+                    </div>
+                  </div>
+
+                  <div class="row" id="anch4">
+                    <div class="col-md-10 col-md-offset-1">
+                        <legend><h3>Github</h3></legend>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultricies, metus eget fringilla fermentum, sem justo pulvinar tellus, ac varius neque </p>
+                        <p>
+                            Cats go for world domination. Meow for food, then when human fills food dish, take a few bites of food and continue meowing always hungry, sun bathe. Then cats take over the world bathe private parts with tongue then lick owner's face vommit food and
+                            eat it again and shove bum in owner's face like camera lens asdflkjaertvlkjasntvkjn (sits on keyboard) toy mouse squeak roll over.
+                        </p></br>
+                        <p>
+                            Cats go for world domination. Meow for food, then when human fills food dish, take a few bites of food and continue meowing always hungry, sun bathe. Then cats take over the world bathe private parts with tongue then lick owner's face vommit food and
+                            eat it again and shove bum in owner's face like camera lens asdflkjaertvlkjasntvkjn (sits on keyboard) toy mouse squeak roll over.
+                        </p></br>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8 custom-results" id="js-results">
+                        <ul>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <form class="form-horizontal custom-form" id="js-login">
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" id="email" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" id="password" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-8">
+                                    <button type="submit" class="btn btn-default">Login</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="row hidden" id='admin'>
+                    <h2>Admin</h2>
+                    <button id='logout'>Logout</button>
+                </div>
+
+                <div class="navbar navbar-default navbar-static-bottom">
+                    <p class="navbar-text pull-left">
+                        Remember to credit this guy <a href="http://mvnguyen.com" target="_blank">Michael V Nguyen</a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <!-- END Header -->
-
-    <div class="container">
-
-        <div class="row">
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-8">
-                <p class="custom-cat-text">
-                    <strong>All your CATS are belong to me...</strong>
-                </p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-2">
-            </div>
-            <div class="col-md-8">
-                <section class="custom-text">
-                    <p>
-                        Cats go for world domination. Meow for food, then when human fills food dish, take a few bites of food and continue meowing always hungry, sun bathe. Then cats take over the world bathe private parts with tongue then lick owner's face vommit food and
-                        eat it again and shove bum in owner's face like camera lens asdflkjaertvlkjasntvkjn (sits on keyboard) toy mouse squeak roll over.
-                    </p>
-                    <p>
-                        Inspect anything brought into the house refuse to leave cardboard box this human feeds me, i should be a god and lay on arms while you're using the keyboard but make muffins, for scamper so attack the dog then pretend like nothing happened.
-                    </p>
-
-                    <pre>&lt;p&gt;Sample text here...&lt;/p&gt;</pre>
-
-                </section>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <form class="form-horizontal custom-form" id="js-fact-submit">
-                    <div class="form-group">
-                        <div class="col-md-4">
-                            <input type="text" class="form-control" id="cat-source" placeholder="Source">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-8">
-                            <textarea class="form-control col-md-4" rows="3" id="cat-fact" placeholder="Cat Fact"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-8">
-                            <button type="submit" class="btn btn-default">Submit</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8 custom-results" id="js-results">
-                <ul>
-
-                </ul>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <form class="form-horizontal custom-form" id="js-login">
-                    <div class="form-group">
-                        <div class="col-md-4">
-                            <input type="text" class="form-control" id="email" placeholder="Email">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-4">
-                            <input type="text" class="form-control" id="password" placeholder="Password">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-8">
-                            <button type="submit" class="btn btn-default">Submit</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div class="row hidden" id='admin'>
-            <h2>Admin</h2>
-            <button id='logout'>Logout</button>
-        </div>
-
-
-
-
-
-        <!-- OLD STUFF FROM PURE CSS -->
-
-        <!-- <form class="pure-form pure-form-aligned" id="js-fact-submit">
-            <fieldset>
-                <div class="pure-control-group">
-                    <label for="source">Source</label>
-                    <input id="source" type="text" placeholder="Website...">
-                </div>
-
-                <div class="pure-control-group">
-                    <label for="fact">Cat Fact</label>
-                    <textarea id="fact" type="password" placeholder="Fact..."></textarea>
-                </div>
-
-                <div class="pure-controls">
-                    <button type="submit" class="pure-button pure-button-primary">Submit</button>
-                </div>
-            </fieldset>
-        </form>
-
-        <div class="pure-g">
-            <div class="pure-u-1 pure-u-md-1-3" id="js-results">
-                <ul>
-
-
-
-                </ul>
-            </div>
-        </div>
-    </div> -->
-
-
 
         <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 
