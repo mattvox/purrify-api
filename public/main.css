@@ -3,6 +3,10 @@ body {
   padding-top: 50px;
 }
 
+.hidden {
+  display: none;
+}
+
 .nav-up {
   top: -52px;
 }
