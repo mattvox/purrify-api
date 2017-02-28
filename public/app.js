@@ -114,6 +114,7 @@ var userLogout = function () {
 
 $(function () {
 
+
     getAllUsers();
 
     addCatFact();

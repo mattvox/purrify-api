@@ -21,28 +21,24 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <nav id="spy">
-                <ul class="sidebar-nav nav">
-                    <li class="sidebar-brand active">
-                        <a href="#home"><span id="logo-text">Purrify</span></a>
+                <ul class="sidebar-nav nav" id="js-nav">
+                    <li class="sidebar-brand nav-link">
+                        <a href="#home"><span id="logo-text" class="nothing">Purrify</span></a>
                     </li>
                     <li>
-                        <a href="#anch1" data-scroll>
-                            <span class="fa fa-anchor solo">DOCS</span>
-                        </a>
+                        <a href="#anch1" data-scroll>DOCS</a>
                     </li>
                     <li>
-                        <a href="#anch2" data-scroll>
-                            <span class="fa fa-anchor solo">CONTRIBUTE</span>
-                        </a>
+                        <a class="nav-link" href="#anch2" data-scroll>CONTRIBUTE</a>
                     </li>
                     <li>
                         <a href="#anch3" data-scroll>
-                            <span class="fa fa-anchor solo">CONTACT</span>
+                            <span class="nav-link">CONTACT</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#anch4" data-scroll>
-                            <span class="fa fa-anchor solo">GITHUB</span>
+                        <a class="nav-link" href="#anch4" data-scroll>
+                            <span>GITHUB</span>
                         </a>
                     </li>
                 </ul>
@@ -51,16 +47,18 @@
 
         <!-- Page content -->
         <div id="page-content-wrapper container">
-            <div class="content-header">
-                <h1 id="home">
-                    <a id="menu-toggle" href="#" class="glyphicon glyphicon-menu-hamburger" aria-hidden="true">
-                    </a>
-                </h1>
+            <div class="row">
+                <div class="content-header col-sm-10 col-sm-offset-1">
+                    <h1 id="home">
+                      <a id="menu-toggle" href="#" class="glyphicon glyphicon-menu-hamburger" aria-hidden="true">
+                      </a>
+                    </h1>
+                </div>
             </div>
 
             <div class="page-content inset" data-spy="scroll" data-target="#spy">
                 <div class="row">
-                    <div class="col-md-10 col-md-offset-1 jumbotron">
+                    <div class="col-sm-10 col-sm-offset-1 jumbotron">
                         <div>
                             <h1>All your cats are belong to me...</h1>
                             <p>Purrify is a simple, easy-to-use RESTful service dedicated to delivering everything cat.</p>
@@ -71,104 +69,115 @@
                 </div>
 
                 <div class="row" id="anch1">
-                    <div class="col-md-10 col-md-offset-1">
-                        <legend><h3>Getting Started</h3></legend>
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <legend>
+                            <h3>Getting Started</h3></legend>
                         <p>Using Purrify couldn't be any easier. Here are some examples.</p>
                         <p>
                             Cats go for world domination. Meow for food, then when human fills food dish, take a few bites of food and continue meowing always hungry, sun bathe. Then cats take over the world bathe private parts with tongue then lick owner's face vommit food and
                             eat it again and shove bum in owner's face like camera lens asdflkjaertvlkjasntvkjn (sits on keyboard) toy mouse squeak roll over.
-                        </p></br>
+                        </p>
+                        </br>
                         <h4>HTTP GET Requests</h4>
                         <pre>GET https://example.com/api/facts</pre>
                         <p>
-                          Delivers to you a random cat fact from our database in standard JSON format.
+                            Delivers to you a random cat fact from our database in standard JSON format.
                         </p>
                         <p>---examples will go here---</p>
                         <pre>GET https://example.com/api/facts/all</pre>
                         <p>
-                          Delivers to you all cat facts from our database in standard JSON format.
-                        </p></br>
+                            Delivers to you all cat facts from our database in standard JSON format.
+                        </p>
+                        </br>
                         <h4>HTTP POST Requests</h4>
                         <pre>POST https://example.com/api/facts</pre>
-                        <p>Purrify allows anyone to add cat facts to our database. Please note that our cat admins are very serious about the accuracy of newly submitted cat facts and each newly added fact will go through an extensive review process before becoming available through the API.</p>
+                        <p>Purrify allows anyone to add cat facts to our database. Please note that our cat admins are very serious about the accuracy of newly submitted cat facts and each newly added fact will go through an extensive review process before
+                            becoming available through the API.</p>
                         <table class="table">
-                          <caption>QUERY PARAMETERS</caption>
-                          <tr>
-                            <th>Parameter</th>
-                            <th>Optional</th>
-                            <th>Description</th>
-                          </tr>
-                          <tr>
-                            <td>Source</td>
-                            <td>No</td>
-                            <td>The source parameter identifies the originating source of the cat fact.</td>
-                          </tr>
-                          <tr>
-                            <td>Fact</td>
-                            <td>No</td>
-                            <td>The fact parameter contains the cat fact to be submitted for approval.</td>
-                          </tr>
+                            <caption>QUERY PARAMETERS</caption>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Optional</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>Source</td>
+                                <td>No</td>
+                                <td>The source parameter identifies the originating source of the cat fact.</td>
+                            </tr>
+                            <tr>
+                                <td>Fact</td>
+                                <td>No</td>
+                                <td>The fact parameter contains the cat fact to be submitted for approval.</td>
+                            </tr>
                         </table>
                     </div>
-                  </div>
+                </div>
 
-                  <div class="row" id="anch2">
-                    <div class="col-md-10 col-md-offset-1">
-                        <legend><h3>Contribute</h3></legend>
+                <div class="row" id="anch2">
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <legend>
+                            <h3>Contribute</h3></legend>
                         <p>Contributing a new cat fact to our database couldn't be any easier. Just use the form below and please note that all fields are required.</p>
                         <form class="form-horizontal custom-form" id="js-fact-submit">
                             <div class="form-group">
-                                <div class="col-md-4">
+                                <div class="col-sm-4">
                                     <input type="text" class="form-control" id="cat-source" placeholder="Source">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-md-8">
-                                    <textarea class="form-control col-md-4" rows="3" id="cat-fact" placeholder="Cat Fact"></textarea>
+                                <div class="col-sm-8">
+                                    <textarea class="form-control col-sm-4" rows="3" id="cat-fact" placeholder="Cat Fact"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-md-8">
+                                <div class="col-sm-8">
                                     <button type="submit" class="btn btn-default">Submit</button>
                                 </div>
                             </div>
                         </form>
                     </div>
-                  </div>
+                </div>
 
-                  <div class="row" id="anch3">
-                    <div class="col-md-10 col-md-offset-1">
-                        <legend><h3>Contact</h3></legend>
+                <div class="row" id="anch3">
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <legend>
+                            <h3>Contact</h3></legend>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultricies, metus eget fringilla fermentum.</p>
                         <p>
                             Cats go for world domination. Meow for food, then when human fills food dish, take a few bites of food and continue meowing always hungry, sun bathe. Then cats take over the world bathe private parts with tongue then lick owner's face vommit food and
                             eat it again and shove bum in owner's face like camera lens asdflkjaertvlkjasntvkjn (sits on keyboard) toy mouse squeak roll over.
-                        </p></br>
+                        </p>
+                        </br>
                         <p>
                             Cats go for world domination. Meow for food, then when human fills food dish, take a few bites of food and continue meowing always hungry, sun bathe. Then cats take over the world bathe private parts with tongue then lick owner's face vommit food and
                             eat it again and shove bum in owner's face like camera lens asdflkjaertvlkjasntvkjn (sits on keyboard) toy mouse squeak roll over.
-                        </p></br>
+                        </p>
+                        </br>
                     </div>
-                  </div>
+                </div>
 
-                  <div class="row" id="anch4">
-                    <div class="col-md-10 col-md-offset-1">
-                        <legend><h3>Github</h3></legend>
+                <div class="row" id="anch4">
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <legend>
+                            <h3>Github</h3></legend>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ultricies, metus eget fringilla fermentum, sem justo pulvinar tellus, ac varius neque </p>
                         <p>
                             Cats go for world domination. Meow for food, then when human fills food dish, take a few bites of food and continue meowing always hungry, sun bathe. Then cats take over the world bathe private parts with tongue then lick owner's face vommit food and
                             eat it again and shove bum in owner's face like camera lens asdflkjaertvlkjasntvkjn (sits on keyboard) toy mouse squeak roll over.
-                        </p></br>
+                        </p>
+                        </br>
                         <p>
                             Cats go for world domination. Meow for food, then when human fills food dish, take a few bites of food and continue meowing always hungry, sun bathe. Then cats take over the world bathe private parts with tongue then lick owner's face vommit food and
                             eat it again and shove bum in owner's face like camera lens asdflkjaertvlkjasntvkjn (sits on keyboard) toy mouse squeak roll over.
-                        </p></br>
+                        </p>
+                        </br>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-8 custom-results" id="js-results">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8 custom-results" id="js-results">
                         <ul>
 
                         </ul>
@@ -176,21 +185,21 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-8">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8">
                         <form class="form-horizontal custom-form" id="js-login">
                             <div class="form-group">
-                                <div class="col-md-4">
+                                <div class="col-sm-4">
                                     <input type="text" class="form-control" id="email" placeholder="Email">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-md-4">
+                                <div class="col-sm-4">
                                     <input type="text" class="form-control" id="password" placeholder="Password">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-md-8">
+                                <div class="col-sm-8">
                                     <button type="submit" class="btn btn-default">Login</button>
                                 </div>
                             </div>
@@ -215,14 +224,14 @@
 
     <!-- END Header -->
 
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-        <script src="app.js"></script>
-        <script src="scroll.js"></script>
+    <script src="app.js"></script>
+    <script src="scroll.js"></script>
 </body>
 
 </html>
