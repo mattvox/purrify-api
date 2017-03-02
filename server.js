@@ -19,6 +19,7 @@ server.use(bodyParser.json());
 server.use(express.static("public"));
 
 var runServer = function (callback) {
+    mongoose.Promise = global.Promise;
     mongoose.connect(config.DATABASE_URL, function (err) {
         if (err && callback) {
             return callback(err);
@@ -59,13 +60,12 @@ server.use('/admin', adminRoutes);
 // ********** LOGIN ROUTE **********
 
 server.post('/login', function (req, res) {
-    User.findOne({email: req.body.email}, '+password', function (err, user) {
+    User.findOne({ email: req.body.email }, '+password', function (err, user) {
         if (err) {
             return res.status(404).json({message: "User Not Found"});
         }
 
         user.validatePassword(req.body.password, function (err, isValid) {
-            console.log(err, isValid);
             if (err) {
                 return res.status(418).json({message: 'Im a teapot'});
             }
@@ -74,11 +74,13 @@ server.post('/login', function (req, res) {
                 return res.json({message: 'Invalid password'});
             }
 
-            console.log(user);
+            // if (user.admin) {
+            //     permissions = ['admin'];
+            // }
 
-            // this is where we generate a token
             var token = jwt.sign({
-                email: user.email
+                email: user.email,
+                permissions: user.permissions
             }, jwtConfig.jwtSecret, {expiresIn: '8h'});
 
             res.status(200).json({
@@ -88,7 +90,7 @@ server.post('/login', function (req, res) {
     });
 })
 
-// CATCH-ALL
+// ********** CATCH-ALL ROUTE **********
 
 server.use('*', function (req, res) {
   res.status(404).json({message: '404: Not Found'});

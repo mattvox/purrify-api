@@ -14,6 +14,11 @@ var FactSchema = new mongoose.Schema({
         type: Boolean,
         required: true,
         default: false
+    },
+    isTrash: {
+        type: Boolean,
+        required: true,
+        default: false
     }
 }, {
     timestamps: {

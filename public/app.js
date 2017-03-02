@@ -7,11 +7,9 @@ var authStr = 'Bearer '.concat(localStorage.getItem('token'));
 
 var admin = axios.create();
 
-// admin.interceptors.request.use(function (config) {
-//     config.default.headers['Authorization']: { authStr }
-// });
-
 admin.defaults.headers.common['Authorization'] = authStr;
+
+
 
 var displayCatFact = function (data) {
     var factTemplate = `<li>${data.fact}</li>`;

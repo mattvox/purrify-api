@@ -4,7 +4,7 @@ var Fact = require('../models/fact');
 
 // GET a random fact
 guestRouter.get('/facts', function (req, res) {
-    Fact.findOneRandom(function (err, fact) {
+    Fact.findRandom({}, {}, { limit: req.query.num || 1 }, function (err, fact) {
         if (err) {
             return res.status(404).json({message: 'Fact Not Found'});
         }
@@ -14,6 +14,9 @@ guestRouter.get('/facts', function (req, res) {
 
 // GET all facts
 guestRouter.get('/facts/all', function (req, res) {
+
+// ADD isApproved: true HERE BEFORE DEPLOYMENT
+
     Fact.find({}, function (err, facts) {
         if (err) {
             return res.status(404).json({message: 'Internal server error'});
