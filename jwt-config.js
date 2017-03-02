@@ -1,5 +1,5 @@
 module.exports = {
-  jwtSecret: 'moose everywhere',
+  jwtSecret: 'mooses everywhere',
   jwtSession: {
     session: false
   }
