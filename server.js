@@ -65,18 +65,18 @@ server.post('/login', function (req, res) {
             return res.status(404).json({message: "User Not Found"});
         }
 
+        if (!user) {
+            return res.status(418).json({message: "User Not Found"});
+        }
+
         user.validatePassword(req.body.password, function (err, isValid) {
             if (err) {
                 return res.status(418).json({message: 'Im a teapot'});
             }
 
             if (!isValid) {
-                return res.json({message: 'Invalid password'});
+                return res.status(404).json({message: 'Invalid password'});
             }
-
-            // if (user.admin) {
-            //     permissions = ['admin'];
-            // }
 
             var token = jwt.sign({
                 email: user.email,

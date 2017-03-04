@@ -59,7 +59,7 @@ adminRouter.put('/facts/:id', middleWare('admin'), function (req, res) {
     });
 });
 
-// DELETE a fact
+// DELETE a fact (Send Trash, needs fixing, add param to PUT at same endpoint?)
 adminRouter.delete('/facts/:id', middleWare('admin'), function (req, res) {
     // permissions MUST be validated before this is an option
     Fact.findOneAndRemove({

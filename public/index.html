@@ -23,23 +23,22 @@
             <nav id="spy">
                 <ul class="sidebar-nav nav" id="js-nav">
                     <li class="sidebar-brand nav-link">
-                        <a href="#home"><span id="logo-text" class="nothing">Purrify</span></a>
+                        <a href="#home"><span id="logo-text">Purrify</span></a>
                     </li>
                     <li>
-                        <a href="#anch1" data-scroll>DOCS</a>
+                        <a href="#anchor1" data-scroll>DOCS</a>
                     </li>
                     <li>
-                        <a class="nav-link" href="#anch2" data-scroll>CONTRIBUTE</a>
+                        <a href="#anchor2" data-scroll>CONTRIBUTE</a>
                     </li>
                     <li>
-                        <a href="#anch3" data-scroll>
-                            <span class="nav-link">CONTACT</span>
-                        </a>
+                        <a href="#anchor3" data-scroll>CONTACT</a>
                     </li>
                     <li>
-                        <a class="nav-link" href="#anch4" data-scroll>
-                            <span>GITHUB</span>
-                        </a>
+                        <a href="#anchor4" data-scroll>GITHUB</a>
+                    </li>
+                    <li>
+                        <a href="#anchor5" data-scroll>ADMIN</a>
                     </li>
                 </ul>
             </nav>
@@ -68,10 +67,11 @@
                     </div>
                 </div>
 
-                <div class="row" id="anch1">
+                <div class="row" id="anchor1">
                     <div class="col-sm-10 col-sm-offset-1">
                         <legend>
-                            <h3>Getting Started</h3></legend>
+                            <h3>Getting Started</h3>
+                        </legend>
                         <p>Using Purrify couldn't be any easier. Here are some examples.</p>
                         <p>
                             Cats go for world domination. Meow for food, then when human fills food dish, take a few bites of food and continue meowing always hungry, sun bathe. Then cats take over the world bathe private parts with tongue then lick owner's face vommit food and
@@ -83,7 +83,19 @@
                         <p>
                             Delivers to you a random cat fact from our database in standard JSON format.
                         </p>
-                        <p>---examples will go here---</p>
+                        <table class="table">
+                            <caption>QUERY PARAMETERS</caption>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Optional</th>
+                                <th>Description</th>
+                            </tr>
+                            <tr>
+                                <td>Number</td>
+                                <td>Yes</td>
+                                <td>The number parameter determines how many amazing cat facts to return.</td>
+                            </tr>
+                        </table>
                         <pre>GET https://example.com/api/facts/all</pre>
                         <p>
                             Delivers to you all cat facts from our database in standard JSON format.
@@ -114,10 +126,11 @@
                     </div>
                 </div>
 
-                <div class="row" id="anch2">
+                <div class="row" id="anchor2">
                     <div class="col-sm-10 col-sm-offset-1">
                         <legend>
-                            <h3>Contribute</h3></legend>
+                            <h3>Contribute</h3>
+                        </legend>
                         <p>Contributing a new cat fact to our database couldn't be any easier. Just use the form below and please note that all fields are required.</p>
                         <form class="form-horizontal custom-form" id="js-fact-submit">
                             <div class="form-group">
@@ -139,7 +152,7 @@
                     </div>
                 </div>
 
-                <div class="row" id="anch3">
+                <div class="row" id="anchor3">
                     <div class="col-sm-10 col-sm-offset-1">
                         <legend>
                             <h3>Contact</h3></legend>
@@ -157,7 +170,7 @@
                     </div>
                 </div>
 
-                <div class="row" id="anch4">
+                <div class="row" id="anchor4">
                     <div class="col-sm-10 col-sm-offset-1">
                         <legend>
                             <h3>Github</h3></legend>
@@ -175,6 +188,55 @@
                     </div>
                 </div>
 
+                <div class="row" id="anchor5">
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <legend><h3>Admin</h3></legend>
+                            <form class="form-horizontal custom-form" id="js-form-login">
+                                <div class="form-group">
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" id="email" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" id="password" placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-4">
+                                        <button type="submit" class="btn btn-default">Login</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <div id="admin" class="hidden">
+                                Admin stuff goes here
+<!--
+                                View all facts waiting for approval
+                                - Update/fix a fact
+                                - Trash a fact (on PUT in query)
+
+                                User settings
+                                - Update profile
+                                - Delete account
+
+                                Super Admin stuff
+
+                                View all users
+                                Find/view a specific user
+                                Create a new user
+                                Update a user
+                                Delete a user
+-->
+                                <div>
+                                    <button class="btn btn-default" id='logout'>
+                                      Logout
+                                    </button>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="col-sm-2"></div>
                     <div class="col-sm-8 custom-results" id="js-results">
@@ -184,45 +246,10 @@
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-8">
-                        <form class="form-horizontal custom-form" id="js-login">
-                            <div class="form-group">
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="email" placeholder="Email">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="password" placeholder="Password">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-8">
-                                    <button type="submit" class="btn btn-default">Login</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-                <div class="row hidden" id='admin'>
-                    <h2>Admin</h2>
-                    <button id='logout'>Logout</button>
-                </div>
-
-                <div class="navbar navbar-default navbar-static-bottom">
-                    <p class="navbar-text pull-left">
-                        Remember to credit this guy <a href="http://mvnguyen.com" target="_blank">Michael V Nguyen</a>
-                    </p>
-                </div>
-
             </div>
         </div>
     </div>
 
-    <!-- END Header -->
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 

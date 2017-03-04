@@ -3,12 +3,13 @@
 
 //var axios = require('axios');
 
-var authStr = 'Bearer '.concat(localStorage.getItem('token'));
 
+// Create authorization header for jwt
+
+var authStr = 'Bearer '.concat(localStorage.getItem('token'));
 var admin = axios.create();
 
 admin.defaults.headers.common['Authorization'] = authStr;
-
 
 
 var displayCatFact = function (data) {
@@ -76,7 +77,7 @@ var getAllCatFacts = function () {
 // login
 
 var userLogin = function () {
-    $('#js-login').on('submit', function (event) {
+    $('#js-form-login').on('submit', function (event) {
         event.preventDefault();
 
         var data = {}
@@ -93,6 +94,7 @@ var userLogin = function () {
             localStorage.setItem('token', res.data.token);
 
             $('#admin').toggleClass('hidden');
+            $('#js-form-login').toggleClass('hidden');
 
         }).catch(function (err) {
             console.log(err);
@@ -107,19 +109,20 @@ var userLogout = function () {
     localStorage.removeItem('token');
 
     $('#admin').toggleClass('hidden');
+    $('#js-form-login').toggleClass('hidden');
   })
 }
 
 $(function () {
+    userLogin();
+    userLogout();
 
-
-    getAllUsers();
+    //getAllUsers();
 
     addCatFact();
     //getRandomCatFact();
 
-    getAllCatFacts();
+    //getAllCatFacts();
 
-    userLogin();
-    userLogout();
+
 });

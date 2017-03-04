@@ -21,6 +21,9 @@ superRouter.get('/users/:email', middleWare('super'), function (req, res) {
         email: req.params.email
     }, function (err, user) {
         if (err) {
+            return res.status(500).json({message: 'Internal Server Error'});
+        }
+        if (!user) {
             return res.status(404).json({message: 'User Not Found'});
         }
         res.json(user);
@@ -85,7 +88,7 @@ superRouter.post('/users', middleWare('super'), function (req, res) {
     }
 
     // SALT
-    
+
     bcrypt.genSalt(10, function (err, salt) {
         if (err) {
             return res.status(500).json({message: 'Internal Server Error'});
