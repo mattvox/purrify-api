@@ -81,7 +81,7 @@ server.post('/login', function (req, res) {
             var token = jwt.sign({
                 email: user.email,
                 permissions: user.permissions
-            }, jwtConfig.jwtSecret, {expiresIn: '8h'});
+            }, jwtConfig.jwtSecret || process.env.JWT_SECRET, {expiresIn: '8h'});
 
             res.status(200).json({
                 token: token
