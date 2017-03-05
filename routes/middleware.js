@@ -1,5 +1,8 @@
 var jwt = require('jsonwebtoken');
-var jwtConfig = require('../jwt-config');
+
+if (process.env.NODE_ENV !== 'production'){
+    var jwtConfig = require('../jwt-config');
+}
 
 module.exports = function(permissions) {
   return function (req, res, next) {
@@ -17,7 +20,7 @@ module.exports = function(permissions) {
         }
     }
 
-    jwt.verify(token, jwtConfig.jwtSecret, function (err, decoded) {
+    jwt.verify(token, jwtConfig.jwtSecret || process.env.JWT_SECRET, function (err, decoded) {
         if (err) {
             return res.status(403).json({message: 'failed to authenticate'})
         }
