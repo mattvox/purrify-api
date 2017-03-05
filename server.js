@@ -37,7 +37,7 @@ var runServer = function (callback) {
 if (require.main === module) {
     runServer(function (err) {
         if (err) {
-            console.error(err, 'mehGithub');
+            console.error(err, 'Server not started');
         }
     });
 }
