@@ -3,8 +3,11 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var jwt = require('jsonwebtoken');
 
+if (process.env.NODE_ENV !== 'production'){
+    var jwtConfig = require('./jwt-config');
+}
 var config = require('./config');
-var jwtConfig = require('./jwt-config');
+
 
 var User = require('./models/user');
 // var Fact = require('./models/fact');
