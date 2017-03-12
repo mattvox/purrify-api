@@ -1,6 +1,32 @@
 var guestRouter = require('express').Router();
 
 var Fact = require('../models/fact');
+var Image = require('../models/image');
+
+// GET a random image
+guestRouter.get('/cats', function (req, res) {
+    Image.findRandom({}, {}, { limit: req.query.num || 1 }, function (err, image) {
+        if (err) {
+            return res.status(404).json({message: 'Cat Not Found'});
+        }
+        res.json(image);
+    });
+});
+
+// POST add a new image
+guestRouter.post('/cats', function (req, res) {
+    Image.create({
+        uri: req.body.uri
+    }, function (err, image) {
+        if (err) {
+            return res.status(500).json({message: 'Internal Server Error'});
+        }
+        res.status(201).json(image);
+    });
+});
+
+
+
 
 // GET a random fact
 guestRouter.get('/facts', function (req, res) {
