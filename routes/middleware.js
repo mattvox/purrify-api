@@ -1,8 +1,12 @@
+/* global process */
+
 var jwt = require('jsonwebtoken');
 
+/*eslint-disable*/
 if (process.env.NODE_ENV !== 'production'){
     var jwtConfig = require('../jwt-config');
 }
+/*eslint-disable*/
 
 module.exports = function(permissions) {
   return function (req, res, next) {

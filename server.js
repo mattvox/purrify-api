@@ -1,16 +1,18 @@
+/* global process */
+
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var jwt = require('jsonwebtoken');
 
+/*eslint-disable*/
 if (process.env.NODE_ENV !== 'production'){
     var jwtConfig = require('./jwt-config');
 }
+/*eslint-disable*/
+
 var config = require('./config');
-
-
 var User = require('./models/user');
-// var Fact = require('./models/fact');
 
 var adminRoutes = require('./routes/admin-routes');
 var guestRoutes = require('./routes/guest-routes');

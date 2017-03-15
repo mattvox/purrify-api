@@ -51,7 +51,7 @@
         "default-case": "error",
         "dot-location": "error",
         "dot-notation": [
-            "error",
+            "off",
             {
                 "allowKeywords": true
             }
@@ -102,7 +102,7 @@
         ],
         "max-statements-per-line": "error",
         "multiline-ternary": [
-            "error",
+            "off",
             "always"
         ],
         "new-cap": "off",
